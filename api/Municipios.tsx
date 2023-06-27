@@ -2,13 +2,25 @@ import { type Clima, type ClimaWrapper,type Municipio, type OldApiAnswer } from 
 
 const baseUrl = 'https://opendata.aemet.es/opendata/api'
 
-const getAllMunicipios = async () : Promise<Municipio[]> =>  {
-    const res = await fetch(`${baseUrl}/maestro/municipios/?api_key=${process.env.API_KEY}`,
-    {
-        cache: 'no-cache',
-    })
-    const data = await res.json()
-    return data
+export const getAllMunicipios = async () : Promise<Municipio[]> =>  {
+    try{
+        const url = `${baseUrl}/maestro/municipios/?api_key=${process.env.API_KEY}`
+        const res = await fetch(url, 
+        {
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+              },
+        },
+        )
+        const data : Municipio[] = await res.json()
+        return data
+    }
+    catch(err){
+        console.log(err)
+        throw new Error('No se han podido obtener los municipios')
+    }
+    
 }
 
 const getMunicipioByName = async (nombre: string) : Promise<Municipio> => {
