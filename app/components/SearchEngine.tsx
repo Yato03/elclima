@@ -11,7 +11,6 @@ interface Props {
 
 export const SearchEngine = ({ municipios }:Props)  => {
 
-  console.log('municipios', municipios)
   const [search, setSearch] = useState('')
   const [municipio, setMunicipio] = useState('')
 
@@ -23,7 +22,7 @@ export const SearchEngine = ({ municipios }:Props)  => {
     return municipio.nombre.toLowerCase().startsWith(search)
   })
 
-  const firstMunicipios = [...filteredMunicipios.slice(0, 10)];
+  const firstMunicipios = filteredMunicipios ? [...filteredMunicipios.slice(0, 10)] : [];
 
   return (
     <div className='mt-10 w-96 flex justify-center flex-row'>
