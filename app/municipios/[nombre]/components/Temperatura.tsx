@@ -1,31 +1,27 @@
-import {type Temperatura as TemperaturaType} from "@/types"
-import {type EstadoCielo as EstadoCieloType} from "@/types"
-import {type Precipitacion} from "@/types"
+import { type Temperatura as TemperaturaType, type EstadoCielo as EstadoCieloType, type Precipitacion } from '@/types'
 
+import Image from 'next/image'
+import sunnyImage from '@/public/sunny.png'
+import cloudyImage from '@/public/cloudy.png'
+import rainyImage from '@/public/rainy.png'
+import React from 'react'
 
-import Image from "next/image"
-import sunnyImage from "@/public/sunny.png"
-import cloudyImage from "@/public/cloudy.png"
-import rainyImage from "@/public/rainy.png"
-
-interface Props{
-    temperaturaData: TemperaturaType
-    estadoCielo: EstadoCieloType []
-    precipitacion: Precipitacion []
-    key: string
+interface Props {
+  temperaturaData: TemperaturaType
+  estadoCielo: EstadoCieloType []
+  precipitacion: Precipitacion []
+  key: string
 
 }
 
-export const Temperatura = ({ temperaturaData, estadoCielo, precipitacion, key }: Props) => {
+export const Temperatura = ({ temperaturaData, estadoCielo, precipitacion, key }: Props): React.JSX.Element => {
+  const estadoCieloData = estadoCielo.find((estadoCielo) => estadoCielo.periodo === temperaturaData.periodo)
 
-    const estadoCieloData = estadoCielo.find((estadoCielo) => estadoCielo.periodo === temperaturaData.periodo)
+  // const precipitacionData = precipitacion.find((precipitacion) => precipitacion.periodo === temperaturaData.periodo)
 
-    const precipitacionData = precipitacion.find((precipitacion) => precipitacion.periodo === temperaturaData.periodo)
+  const estadoCieloImg = estadoCieloData?.descripcion === 'Despejado' ? sunnyImage : estadoCieloData?.descripcion === 'Lluvia' ? rainyImage : cloudyImage
 
-    let estadoCieloImg = estadoCieloData?.descripcion === "Despejado" ? sunnyImage : estadoCieloData?.descripcion === "Lluvia" ? rainyImage : cloudyImage
-
-    
-    return(
+  return (
         <div className=" w-20 mx-auto bg-white rounded-xl shadow-md" key={key}>
         <div className="md:flex justify-center items-center p-5 flex-col">
             <div className="uppercase tracking-wide text-m text-indigo-500 font-semibold">{temperaturaData.periodo}:00</div>
@@ -35,5 +31,5 @@ export const Temperatura = ({ temperaturaData, estadoCielo, precipitacion, key }
 
         </div>
 
-    )
+  )
 }

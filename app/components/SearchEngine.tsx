@@ -1,7 +1,6 @@
 'use client'
-
+import React, { useState } from 'react'
 import Link from 'next/link'
-import { useState } from 'react'
 import { type Municipio } from '@/types'
 import { Combobox } from '@headlessui/react'
 
@@ -9,30 +8,29 @@ interface Props {
   municipios: Municipio[]
 }
 
-export const SearchEngine = ({ municipios }:Props)  => {
-
+export const SearchEngine = ({ municipios }: Props): React.JSX.Element => {
   const [search, setSearch] = useState('')
   const [municipio, setMunicipio] = useState('')
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setSearch(e.target.value.toLowerCase())
   }
 
-  const filteredMunicipios : Municipio[] | undefined = municipios?.filter((municipio) => {
+  const filteredMunicipios: Municipio[] | undefined = municipios?.filter((municipio) => {
     return municipio.nombre.toLowerCase().startsWith(search)
   })
 
-  const firstMunicipios = filteredMunicipios ? [...filteredMunicipios.slice(0, 10)] : [];
+  const firstMunicipios = [...filteredMunicipios.slice(0, 10)]
 
   return (
     <div className='mt-10 w-96 flex justify-center flex-row'>
-      
+
         <Combobox value={municipio} onChange={setMunicipio}>
           <div className='flex flex-col'>
-          <Combobox.Input 
-            onChange={handleInput} 
+          <Combobox.Input
+            onChange={handleInput}
             className='border border-gray-400 rounded-md p-2 w-full text-black'
-            placeholder='Escribe una localidad' 
+            placeholder='Escribe una localidad'
           />
           <Combobox.Options >
             {firstMunicipios?.map((m) => (

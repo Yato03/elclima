@@ -1,3 +1,3 @@
-export default function Municipios(){
-    return null
+export default function Municipios (): any {
+  return null
 }
