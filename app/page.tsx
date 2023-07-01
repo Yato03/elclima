@@ -1,16 +1,9 @@
 import { SearchEngine } from "./components/SearchEngine";
 import { getAllMunicipios } from "@/api/Municipios";
-import { type Municipio } from "@/types";
 
-interface Props {
-  municipios: Municipio[]
-}
-
-export default async function Home({ municipios } : Props) {
-  console.log('municipios', municipios)
+export default async function Home() {
 
   const m = await getAllMunicipios()
-  console.log('m', m)
 
   return ( 
     <main className="flex min-h-screen flex-col items-center  p-24">
