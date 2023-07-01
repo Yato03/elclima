@@ -20,7 +20,7 @@ export const ListOfTemperaturas = ({ temperaturasData, estadoCielo, precipitacio
     return (
         <div className="flex flex-row gap-2 flex-wrap justify-start">
             {filteredTemperaturasData.map((temperatura) => (
-                <Temperatura temperaturaData={temperatura} estadoCielo={estadoCielo} precipitacion={precipitacion}/>
+                <Temperatura key={crypto.randomUUID.toString()} temperaturaData={temperatura} estadoCielo={estadoCielo} precipitacion={precipitacion}/>
             ))}
         </div>
     )
