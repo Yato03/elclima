@@ -12,8 +12,6 @@ interface Props{
 }
 
 export const ListOfTemperaturas = ({ temperaturasData, estadoCielo, precipitacion } : Props) => {
-
-
     const horaActual = new Date().getHours()
     const filteredTemperaturasData = temperaturasData.filter((temperatura) => parseInt(temperatura.periodo) >= horaActual)
 
