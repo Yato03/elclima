@@ -5,7 +5,8 @@ import { Clima } from './components/Clima'
 import React from 'react'
 
 export default async function Municipio ({ params }: { params: { nombre: string } }): Promise<React.JSX.Element> {
-  const nombre = params.nombre
+  let nombre = params.nombre
+  nombre = decodeURIComponent(nombre)
 
   const clima: ClimaType = await getClimaMunicipio(nombre)
 

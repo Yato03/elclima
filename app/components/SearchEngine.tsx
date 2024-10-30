@@ -16,9 +16,11 @@ export const SearchEngine = ({ municipios }: Props): React.JSX.Element => {
     setSearch(e.target.value.toLowerCase())
   }
 
-  const filteredMunicipios: Municipio[] | undefined = municipios?.filter((municipio) => {
-    return municipio.nombre.toLowerCase().startsWith(search)
-  })
+  const filteredMunicipios: Municipio[] | undefined = Array.isArray(municipios)
+    ? municipios.filter((municipio) =>
+      municipio.nombre.toLowerCase().startsWith(search)
+    )
+    : []
 
   const firstMunicipios = [...filteredMunicipios.slice(0, 10)]
 
