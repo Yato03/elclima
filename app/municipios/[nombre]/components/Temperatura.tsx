@@ -21,7 +21,9 @@ export const Temperatura = ({ temperaturaData, estadoCielo, precipitacion, key }
 
   console.log(precipitacion)
 
-  const estadoCieloImg = estadoCieloData?.descripcion === 'Despejado' ? sunnyImage : estadoCieloData?.descripcion === 'Lluvia' ? rainyImage : cloudyImage
+  let estadoCieloImg = estadoCieloData?.descripcion === 'Despejado' ? sunnyImage : estadoCieloData?.descripcion === 'Lluvia' ? rainyImage : cloudyImage
+
+  estadoCieloImg = Number(precipitacion?.value) !== 0 ? rainyImage : estadoCieloImg
 
   return (
         <div className=" w-20 mx-auto bg-white rounded-xl shadow-md" key={key}>
