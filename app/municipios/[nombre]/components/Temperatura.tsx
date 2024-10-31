@@ -19,14 +19,12 @@ export const Temperatura = ({ temperaturaData, estadoCielo, precipitacion, key }
 
   // const precipitacionData = precipitacion.find((precipitacion) => precipitacion.periodo === temperaturaData.periodo)
 
-  console.log(precipitacion)
-
   let estadoCieloImg = estadoCieloData?.descripcion === 'Despejado' ? sunnyImage : estadoCieloData?.descripcion === 'Lluvia' ? rainyImage : cloudyImage
 
   estadoCieloImg = Number(precipitacion?.value) !== 0 ? rainyImage : estadoCieloImg
 
   return (
-        <div className=" w-20 mx-auto bg-white rounded-xl shadow-md" key={key}>
+        <div className="inline-block w-20 bg-white rounded-xl shadow-md mx-2" key={key}>
         <div className="md:flex justify-center items-center p-5 flex-col">
             <div className="uppercase tracking-wide text-m text-indigo-500 font-semibold">{temperaturaData.periodo}:00</div>
             <Image className="w-12 mt-4" src={estadoCieloImg} alt="estadoCielo" />

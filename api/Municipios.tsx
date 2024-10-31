@@ -8,7 +8,6 @@ export const getAllMunicipios = async (): Promise<Municipio[]> => {
     if (apiKey == null) {
       throw new Error('No se ha encontrado la api key')
     }
-    console.log(apiKey)
     const url = `${baseUrl}/maestro/municipios/?api_key=${apiKey}`
     const res = await fetch(url,
       {
@@ -69,7 +68,6 @@ export const getClimaMunicipio = async (nombre: string): Promise<Clima> => {
   const id = municipio.id.replace('id', '')
 
   try {
-    console.log('hola')
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     const res = await fetch(`${baseUrl}/prediccion/especifica/municipio/horaria/${id}/?api_key=${process.env.API_KEY}`,
       {

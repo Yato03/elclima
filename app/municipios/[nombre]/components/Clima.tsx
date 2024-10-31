@@ -23,7 +23,14 @@ export const Clima = ({ climaData }: Props): React.JSX.Element => {
                 <h3>Horas de sol: {horaOrto}-{horaOcaso}</h3>
             </div>
 
-            <ListOfTemperaturas temperaturasData={climaData.prediccion.dia[0].temperatura} estadoCielo={climaData.prediccion.dia[0].estadoCielo} precipitacion={climaData.prediccion.dia[0].precipitacion}/>
+            <ListOfTemperaturas temperaturasData={climaData.prediccion.dia[0].temperatura} estadoCielo={climaData.prediccion.dia[0].estadoCielo} precipitacion={climaData.prediccion.dia[0].precipitacion} mañana={false}/>
+
+            <div className="mb-4 mt-8">
+                <h2>Mañana</h2>
+            </div>
+
+            <ListOfTemperaturas temperaturasData={climaData.prediccion.dia[1].temperatura} estadoCielo={climaData.prediccion.dia[1].estadoCielo} precipitacion={climaData.prediccion.dia[1].precipitacion} mañana={true}/>
+
         </div>
   )
 }
